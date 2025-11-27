@@ -653,38 +653,362 @@ button[type="submit"]:hover {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .container {
-        margin: 10px;
+    body {
+        padding: 0;
+        background-color: white;
     }
 
-    form {
-        padding: 20px;
+    .container {
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    header {
+        padding: 20px 15px;
+        border-bottom: 2px solid var(--verde-lima);
+    }
+
+    .logo-container img {
+        height: 70px;
     }
 
     header h1 {
-        font-size: 1.5em;
+        font-size: 1.3em;
+        letter-spacing: 0;
+        margin-bottom: 8px;
+    }
+
+    header p.subtitle {
+        font-size: 0.9em;
+    }
+
+    .disclaimer {
+        font-size: 0.85em !important;
+        padding: 10px 15px;
+        margin-top: 12px;
+    }
+
+    form {
+        padding: 15px;
+    }
+
+    .form-section {
+        margin-bottom: 20px;
+        padding: 15px;
+        background: white;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-section h2 {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-size: 0.95em;
+        margin-bottom: 6px;
+    }
+
+    input[type="number"],
+    input[type="text"],
+    select {
+        padding: 10px;
+        font-size: 0.95em;
+        border: 1px solid #ddd;
     }
 
     .radio-group {
         grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    input[type="radio"] + label {
+        padding: 12px 15px;
+        font-size: 0.95em;
+        border-width: 1px;
     }
 
     .form-row {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 15px;
     }
 
     .goals-grid {
         grid-template-columns: 1fr;
+        gap: 10px;
     }
 
-    .results-grid,
+    .goal-card {
+        padding: 15px;
+        border-width: 1px;
+    }
+
+    .goal-card label {
+        font-size: 1em;
+    }
+
+    button[type="submit"] {
+        padding: 14px;
+        font-size: 1em;
+        border-radius: 8px;
+    }
+
+    #results {
+        padding: 15px;
+        background: white;
+    }
+
+    #results h2 {
+        font-size: 1.4em;
+        margin-bottom: 20px;
+    }
+
+    .equation-info {
+        background: #fafafa;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .equation-info h3 {
+        font-size: 1.1em;
+        margin-bottom: 12px;
+    }
+
+    .equation-box {
+        padding: 12px;
+        margin-bottom: 10px;
+        border-left-width: 3px;
+    }
+
+    .equation-box p {
+        font-size: 0.9em;
+    }
+
+    .equation-box .equation {
+        font-size: 0.85em;
+        padding: 8px;
+    }
+
+    .warnings-section {
+        padding: 15px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-left-width: 3px;
+    }
+
+    .warnings-section h3 {
+        font-size: 1.1em;
+        margin-bottom: 12px;
+    }
+
+    .warnings-section li {
+        font-size: 0.9em;
+        padding: 6px 0;
+    }
+
+    .body-comp-section {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        margin-bottom: 20px;
+    }
+
+    .body-comp-section h3 {
+        font-size: 1.1em;
+        margin-bottom: 12px;
+    }
+
+    .comp-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .comp-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        background: #f5f5f5;
+        border-radius: 6px;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .result-card {
+        padding: 15px;
+        border-width: 1px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .result-card h3 {
+        font-size: 0.85em;
+    }
+
+    .result-card .value {
+        font-size: 1.6em;
+    }
+
+    .result-card .label {
+        font-size: 0.8em;
+    }
+
+    .meals-section {
+        margin-top: 20px;
+    }
+
+    .meals-section h3 {
+        font-size: 1.1em;
+        margin-bottom: 12px;
+    }
+
     #mealsGrid {
         grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .meal-card {
+        padding: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        border: none;
+    }
+
+    .meal-card h4 {
+        font-size: 0.95em;
+    }
+
+    .meal-card p {
+        font-size: 0.85em;
+    }
+
+    .recommendations-section {
+        padding: 15px;
+        margin-top: 20px;
+        border-left-width: 3px;
+    }
+
+    .recommendations-section h3 {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+
+    .rec-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .rec-card {
+        padding: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .rec-card h4 {
+        font-size: 0.9em;
+    }
+
+    .rec-value {
+        font-size: 1.3em;
+    }
+
+    .rec-desc {
+        font-size: 0.8em;
+    }
+
+    .rate-box {
+        padding: 15px;
+        margin-top: 20px;
+        border-left-width: 3px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .rate-box h4 {
+        font-size: 1em;
+        margin-bottom: 10px;
+    }
+
+    .rate-box p {
+        font-size: 0.9em;
+    }
+
+    .tips-box {
+        padding: 15px;
+        margin-top: 20px;
+        border-width: 1px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .tips-box h4 {
+        font-size: 1.1em;
+        margin-bottom: 12px;
+    }
+
+    .tips-box li {
+        padding: 10px 0 10px 28px;
+        font-size: 0.9em;
+    }
+
+    .tips-box li::before {
+        font-size: 1.1em;
     }
 
     .action-buttons {
         flex-direction: column;
+        gap: 10px;
+        margin: 20px 0;
+    }
+
+    .action-buttons button {
+        padding: 12px 20px;
+        font-size: 0.95em;
+        border-radius: 8px;
+    }
+
+    .info-box {
+        padding: 12px;
+        font-size: 0.85em;
+        margin-bottom: 20px;
+    }
+
+    .references-section {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 0.85em;
+    }
+
+    .references-section summary {
+        font-size: 0.95em;
+        padding: 8px 5px;
+    }
+
+    .references-content {
+        margin-top: 15px;
+        padding-top: 12px;
+    }
+
+    .references-content h4 {
+        font-size: 0.95em;
+        margin-top: 15px;
+        margin-bottom: 8px;
+    }
+
+    .references-content li {
+        padding: 6px 0 6px 18px;
+        font-size: 0.8em;
+        line-height: 1.5;
     }
 }
 
