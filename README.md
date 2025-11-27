@@ -118,62 +118,133 @@ Dois métodos disponíveis:
 
 ## 🛣️ Roadmap de Melhorias
 
-### 🎯 Curto Prazo
-- [ ] **Gráfico de macros** (pizza/barras) usando Chart.js ou D3.js
-- [ ] **Modo escuro** com toggle
-- [ ] **Impressão otimizada** dos resultados (CSS @media print)
-- [ ] **Histórico de cálculos** salvos localmente
-- [ ] **Comparador**: visualizar múltiplos cenários lado a lado
-- [ ] **Calculadora reversa**: "Tenho X kcal, distribua os macros"
+### ✅ Concluído
+- [x] Calculadora base de TMB/TDEE com múltiplas fórmulas
+- [x] Distribuição de macronutrientes (gramas/kg e porcentagens)
+- [x] Persistência via URL e localStorage
+- [x] Export para TXT e compartilhamento
+- [x] Validações nutricionais e avisos
+- [x] Interface responsiva e intuitiva
+- [x] Transparência nas equações
+- [x] Branding Cia da Saúde (logo, fonts, cores)
+- [x] Compartilhamento via WhatsApp
+- [x] PWA básico (manifest, favicon)
+- [x] Meta tags SEO e Open Graph
+- [x] Deploy no Vercel
 
-### 🔧 Médio Prazo
-- [ ] **Integração com APIs de alimentos** (TACO, USDA)
-- [ ] **Sugestão de alimentos** para atingir macros
-- [ ] **Plano de refeições** automático baseado nos macros
-- [ ] **Ajuste semanal progressivo**: reduzir/aumentar calorias gradualmente
-- [ ] **Calculadora de cutting/bulking periódico**: ciclos de 4-12 semanas
-- [ ] **Meta de peso**: estimar tempo para atingir objetivo
-- [ ] **Rastreamento de progresso**: gráficos de evolução de peso/medidas
-- [ ] **PWA (Progressive Web App)**: funcionar offline, instalar no celular
+---
 
-### 🚀 Longo Prazo
-- [ ] **Conta de usuário**: salvar dados na nuvem
-- [ ] **Integração com balança inteligente**: atualizar peso automaticamente
-- [ ] **Integração com apps de treino**: sincronizar TDEE real
-- [ ] **IA para ajuste automático**: sugerir mudanças baseado em progresso
-- [ ] **Versão mobile nativa** (React Native / Flutter)
-- [ ] **Comunidade**: compartilhar planos e resultados
-- [ ] **Consultoria integrada**: conectar com nutricionistas
-- [ ] **Análise de micronutrientes**: vitaminas e minerais
+### 🎯 Curto Prazo (1-2 semanas)
+**Visualização e UX**
+- [ ] **Gráfico de macros** - Pizza/barras mostrando distribuição de proteínas, carbos e gorduras
+- [ ] **Modo escuro** - Toggle para tema claro/escuro com persistência
+- [ ] **Impressão otimizada** - CSS @media print para gerar resultados em PDF via navegador
+- [ ] **Animações suaves** - Transições fade-in nos resultados, hover effects melhorados
+- [ ] **Tooltips explicativos** - Ícones (?) com dicas contextuais em cada campo
+
+**Dados e Histórico**
+- [ ] **Histórico local** - Salvar últimos 10 cálculos com data/hora
+- [ ] **Comparador de cenários** - Visualizar 2-3 configurações lado a lado
+- [ ] **Tags/nomes** - Nomear cálculos ("Cutting Verão", "Bulking Inverno")
+
+---
+
+### 🔧 Médio Prazo (1-3 meses)
+**Planejamento Alimentar**
+- [ ] **Sugestões de alimentos** - Lista de fontes proteicas, carbos e gorduras por macro
+- [ ] **Base TACO** - Integrar tabela brasileira de composição de alimentos
+- [ ] **Montador de refeições** - Drag & drop de alimentos para montar prato
+- [ ] **Calculadora reversa** - "Tenho 600 kcal disponíveis, distribua os macros"
+- [ ] **Scanner de rótulos** - OCR para ler informações nutricionais de embalagens
+
+**Progressão e Metas**
+- [ ] **Calculadora de tempo** - "Para atingir 75kg, levar X semanas"
+- [ ] **Ajuste progressivo** - Planejar redução/aumento gradual de calorias (ex: -50 kcal/semana)
+- [ ] **Ciclos de cutting/bulking** - Templates de 4-12 semanas com ajustes automáticos
+- [ ] **Rastreamento de progresso** - Gráficos de evolução de peso, medidas e fotos
+
+**Treino e Gasto Calórico**
+- [ ] **Calculadora de exercícios** - Estimar queima calórica por atividade/duração
+- [ ] **Periodização de carbos** - Ciclar carbos em dias de treino vs descanso
+- [ ] **Timing nutricional** - Sugestões de janela pré/pós treino
+
+---
+
+### 🚀 Longo Prazo (3-6 meses)
+**Backend e Nuvem**
+- [ ] **Sistema de contas** - Firebase/Supabase para salvar dados na nuvem
+- [ ] **Sincronização multi-device** - Acessar de qualquer lugar
+- [ ] **API REST** - Expor funcionalidades para apps externos
+- [ ] **Backup automático** - Export periódico para Google Drive/Dropbox
+
+**Integrações Externas**
+- [ ] **Balança inteligente** - Sync com Xiaomi, Fitbit, etc
+- [ ] **Apps de treino** - Integrar com Strava, MyFitnessPal, Strong
+- [ ] **Wearables** - Apple Watch, Garmin para TDEE real
+- [ ] **Google Fit / Apple Health** - Sincronizar peso e atividades
+
+**Recursos Cia da Saúde**
+- [ ] **Calculadora de suplementos** - Doses recomendadas de whey, creatina, etc
+- [ ] **Catálogo de produtos** - Link para suplementos da loja
+- [ ] **Agendamento integrado** - Agendar consulta nutricional direto da calculadora
+- [ ] **Cupons dinâmicos** - Gerar desconto para primeira consulta
+- [ ] **Programa de pontos** - Gamificação para engajamento
+
+---
 
 ### 🧪 Recursos Avançados
-- [ ] **Suporte a dietas específicas**:
-  - Cetogênica (low-carb)
-  - Vegetariana/Vegana
-  - Paleo
-  - Jejum intermitente (janelas alimentares)
-- [ ] **Calculadora de suplementos**: whey, creatina, cafeína
-- [ ] **Refeição livre (cheat meal)**: calcular impacto semanal
-- [ ] **Ajuste por termogênese**: NEAT, TEF
-- [ ] **Calculadora de bioimpedância**: interpretar dados de balança
-- [ ] **Cronômetro de refeições**: alarmes para horários programados
-- [ ] **Scanner de rótulos**: câmera para ler tabelas nutricionais
+**Dietas Específicas**
+- [ ] **Cetogênica** - Preset low-carb (<50g/dia)
+- [ ] **Vegetariana/Vegana** - Fontes de proteína vegetal
+- [ ] **Paleo** - Restrições e sugestões
+- [ ] **Jejum intermitente** - Calcular janelas alimentares (16/8, 20/4, etc)
+- [ ] **IIFYM** - Flexibilidade com "fits your macros"
+
+**Análise Avançada**
+- [ ] **Micronutrientes** - Calcular vitaminas e minerais
+- [ ] **Bioimpedância** - Interpretar dados de balanças de composição corporal
+- [ ] **NEAT estimado** - Calcular termogênese não-exercício
+- [ ] **TEF** - Efeito térmico dos alimentos
+- [ ] **Refeição livre** - Calcular impacto de cheat meal no déficit semanal
+
+**IA e Personalização**
+- [ ] **Ajuste automático** - IA sugere mudanças baseado em progresso semanal
+- [ ] **Chatbot nutricional** - Responder dúvidas comuns
+- [ ] **Reconhecimento de fotos** - Estimar calorias de prato fotografado
+- [ ] **Previsão de resultado** - ML para estimar composição corporal em X semanas
+
+---
 
 ### 📱 UX/UI
-- [ ] **Onboarding interativo**: tutorial na primeira visita
-- [ ] **Dicas contextuais**: tooltips explicando cada campo
-- [ ] **Animações suaves**: transições entre seções
-- [ ] **Acessibilidade**: WCAG 2.1 AA compliance
-- [ ] **Multi-idioma**: português, inglês, espanhol
-- [ ] **Temas personalizáveis**: cores e estilos
+- [ ] **Onboarding interativo** - Tour guiado na primeira visita
+- [ ] **Wizard passo-a-passo** - Formulário em etapas com validação
+- [ ] **Temas personalizáveis** - Escolher paleta de cores
+- [ ] **Acessibilidade WCAG 2.1 AA** - Screen readers, contraste, teclado
+- [ ] **Multi-idioma** - PT-BR, EN, ES
+- [ ] **Notificações push** - Lembretes de refeições/hidratação
+- [ ] **Modo offline completo** - Service Worker com cache avançado
 
-### 🔒 Técnicos
-- [ ] **Testes automatizados**: Jest, Cypress
-- [ ] **CI/CD**: Deploy automático
-- [ ] **Monitoramento**: Analytics, Sentry
-- [ ] **SEO otimizado**: meta tags, schema.org
-- [ ] **Performance**: lazy loading, code splitting
-- [ ] **Backend opcional**: API REST ou GraphQL
+---
+
+### 🔒 Infraestrutura e Qualidade
+- [ ] **Testes automatizados** - Jest (unit), Cypress (e2e)
+- [ ] **CI/CD** - GitHub Actions para deploy automático
+- [ ] **Monitoramento** - Google Analytics + Sentry para erros
+- [ ] **Performance** - Lighthouse 90+ em todas métricas
+- [ ] **SEO avançado** - Schema.org, sitemap, robots.txt
+- [ ] **CDN** - Cloudflare para cache global
+- [ ] **Rate limiting** - Proteção contra abuso de API
+
+---
+
+### 🌟 Ideias Futuras
+- [ ] **App mobile nativo** - React Native ou Flutter
+- [ ] **Extensão de navegador** - Quick calculator na toolbar
+- [ ] **Comunidade** - Fórum para compartilhar planos e dicas
+- [ ] **Marketplace de nutricionistas** - Conectar usuários com profissionais
+- [ ] **Desafios gamificados** - "30 dias de cutting", badges, rankings
+- [ ] **Análise de sangue** - Interpretar exames laboratoriais
+- [ ] **Receitas customizadas** - Gerar receitas que se encaixam nos macros
 
 ## 🧰 Tecnologias Utilizadas
 
