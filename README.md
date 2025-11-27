@@ -246,6 +246,39 @@ Dois métodos disponíveis:
 - [ ] **Análise de sangue** - Interpretar exames laboratoriais
 - [ ] **Receitas customizadas** - Gerar receitas que se encaixam nos macros
 
+---
+
+### 🏋️ Funcionalidades Inspiradas em Apps Profissionais
+
+**Banco de Alimentos Brasileiro**
+- [ ] Base TACO/IBGE: busca e seleção de alimentos nacionais
+- [ ] Montagem automática de refeições para atingir macros
+
+**Planejamento de Treinos**
+- [ ] Divisão de treinos: musculação, cardio, HIIT, grupos musculares
+- [ ] Sugestão de treinos: templates para iniciantes, intermediários, avançados
+- [ ] Controle de sessões: registrar treinos realizados e progresso
+
+**Evolução e Relatórios**
+- [ ] Histórico de peso, medidas e fotos
+- [ ] Gráficos de evolução: peso, medidas, calorias, macros
+- [ ] Relatórios semanais/mensais: resumo do progresso
+
+**Cardápio Personalizado**
+- [ ] Sugestão automática de refeições: café, almoço, jantar, lanches
+- [ ] Ajuste dinâmico de cardápio: troca de alimentos mantendo macros
+
+**Suplementação**
+- [ ] Sugestão de suplementos: integrar catálogo da loja (Cia da Saúde)
+- [ ] Calculadora de doses: whey, creatina, cafeína, etc
+
+**Compartilhamento e Comunidade**
+- [ ] Compartilhar planos: enviar dieta/treino por link, WhatsApp, PDF
+- [ ] Receber feedback: avaliação de planos por profissionais
+
+**Conta de usuário (opcional)**
+- [ ] Login/salvar na nuvem: sincronizar dados entre dispositivos
+
 ## 🧰 Tecnologias Utilizadas
 
 - **HTML5**: Estrutura semântica
