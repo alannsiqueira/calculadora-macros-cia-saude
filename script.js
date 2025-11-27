@@ -766,14 +766,71 @@ function fillForm(data) {
 }
 
 // Copiar link
-function copyLink() {
+function copyLink(event) {
     const url = window.location.href;
-    navigator.clipboard.writeText(url).then(() => {
-        const btn = event.target;
-        const originalText = btn.textContent;
-        btn.textContent = '✓ Link Copiado!';
-        setTimeout(() => {
-            btn.textContent = originalText;
-        }, 2000);
-    });
+    const btn = event ? event.target : null;
+    
+    // Método 1: Tentar clipboard API
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => {
+            if (btn) {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '✅ Link Copiado!';
+                btn.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.pointerEvents = '';
+                }, 2000);
+            }
+        }).catch(err => {
+            console.log('Clipboard API falhou, tentando método alternativo:', err);
+            fallbackCopyLink(url, btn);
+        });
+    } else {
+        // Método alternativo se clipboard API não disponível
+        fallbackCopyLink(url, btn);
+    }
+}
+
+// Método alternativo para copiar (funciona mesmo sem foco)
+function fallbackCopyLink(url, btn) {
+    const textArea = document.createElement('textarea');
+    textArea.value = url;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        const successful = document.execCommand('copy');
+        if (btn) {
+            const originalText = btn.innerHTML;
+            if (successful) {
+                btn.innerHTML = '✅ Link Copiado!';
+                btn.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.pointerEvents = '';
+                }, 2000);
+            } else {
+                btn.innerHTML = '❌ Erro ao copiar';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                }, 2000);
+            }
+        }
+    } catch (err) {
+        console.error('Erro ao copiar:', err);
+        if (btn) {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '❌ Erro ao copiar';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+            }, 2000);
+        }
+    } finally {
+        document.body.removeChild(textArea);
+    }
 }
