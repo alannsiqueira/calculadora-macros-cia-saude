@@ -511,13 +511,35 @@ Data: ${new Date().toLocaleDateString('pt-BR')}
 ===============================================
     `.trim();
     
-    const blob = new Blob([text], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'meus-macros-' + new Date().toISOString().split('T')[0] + '.txt';
-    a.click();
-    URL.revokeObjectURL(url);
+    // Copiar para clipboard
+    navigator.clipboard.writeText(text).then(() => {
+        // Criar arquivo TXT para download
+        const blob = new Blob([text], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'meus-macros-' + new Date().toISOString().split('T')[0] + '.txt';
+        a.click();
+        URL.revokeObjectURL(url);
+        
+        // Feedback visual
+        const btn = event.target;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✅ Copiado e Exportado!';
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+        }, 2000);
+    }).catch(err => {
+        console.error('Erro ao copiar:', err);
+        // Se falhar clipboard, apenas faz download
+        const blob = new Blob([text], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'meus-macros-' + new Date().toISOString().split('T')[0] + '.txt';
+        a.click();
+        URL.revokeObjectURL(url);
+    });
 }
 
 // Atualizar URL com parâmetros
