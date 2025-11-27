@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Macros e Calorias</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Calculadora de Macros e Calorias</h1>
+            <p class="subtitle">Calcule suas necessidades diárias de calorias e macronutrientes</p>
+        </header>
+
+        <form id="calculatorForm">
+            <!-- Informações Básicas -->
+            <section class="form-section">
+                <h2>Informações Básicas</h2>
+                
+                <div class="form-group">
+                    <label>Gênero</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="male" checked>
+                            <span>Masculino</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="female">
+                            <span>Feminino</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">Idade (anos)</label>
+                        <input type="number" id="age" name="age" value="30" min="15" max="100" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weight">Peso (kg)</label>
+                        <input type="number" id="weight" name="weight" value="70" min="30" max="300" step="0.1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="height">Altura (cm)</label>
+                        <input type="number" id="height" name="height" value="170" min="100" max="250" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Você sabe qual é o seu percentual de gordura atual?</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="knowBodyFat" value="yes">
+                            <span>Sim</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="knowBodyFat" value="no" checked>
+                            <span>Não</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group" id="bodyFatGroup" style="display: none;">
+                    <label for="bodyFat">Percentual de Gordura (%)</label>
+                    <input type="number" id="bodyFat" name="bodyFat" min="5" max="50" step="0.1">
+                </div>
+            </section>
+
+            <!-- Atividade Física -->
+            <section class="form-section">
+                <h2>Atividade Física</h2>
+
+                <div class="form-group">
+                    <label for="activityLevel">Nível de atividade física (NÃO incluindo exercícios)</label>
+                    <select id="activityLevel" name="activityLevel" required>
+                        <option value="1.2">Sedentário (pouco ou nenhum exercício)</option>
+                        <option value="1.375" selected>Levemente ativo (trabalho em pé, caminhadas leves)</option>
+                        <option value="1.55">Moderadamente ativo (trabalho ativo)</option>
+                        <option value="1.725">Muito ativo (trabalho físico intenso)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Você faz musculação?</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="weightTraining" value="yes" checked>
+                            <span>Sim</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="weightTraining" value="no">
+                            <span>Não</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group" id="weightTrainingFreq" style="display: block;">
+                    <label for="trainingDays">Quantos dias por semana?</label>
+                    <select id="trainingDays" name="trainingDays">
+                        <option value="0">0 dias</option>
+                        <option value="1">1 dia</option>
+                        <option value="2">2 dias</option>
+                        <option value="3" selected>3 dias</option>
+                        <option value="4">4 dias</option>
+                        <option value="5">5 dias</option>
+                        <option value="6">6 dias</option>
+                        <option value="7">7 dias</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Você faz cardio (aeróbicos)?</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="cardio" value="yes">
+                            <span>Sim</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="cardio" value="no" checked>
+                            <span>Não</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group" id="cardioFreq" style="display: none;">
+                    <label for="cardioDays">Quantos dias por semana?</label>
+                    <select id="cardioDays" name="cardioDays">
+                        <option value="0">0 dias</option>
+                        <option value="1">1 dia</option>
+                        <option value="2">2 dias</option>
+                        <option value="3" selected>3 dias</option>
+                        <option value="4">4 dias</option>
+                        <option value="5">5 dias</option>
+                        <option value="6">6 dias</option>
+                        <option value="7">7 dias</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Objetivo -->
+            <section class="form-section">
+                <h2>Objetivo</h2>
+
+                <div class="form-group">
+                    <label>Qual seu objetivo?</label>
+                    <div class="goal-options">
+                        <label class="goal-card">
+                            <input type="radio" name="goal" value="cut">
+                            <div class="goal-content">
+                                <h3>🔥 Perder Gordura</h3>
+                                <p>Cutting</p>
+                            </div>
+                        </label>
+                        <label class="goal-card">
+                            <input type="radio" name="goal" value="maintain" checked>
+                            <div class="goal-content">
+                                <h3>⚖️ Manter Peso</h3>
+                                <p>Manutenção</p>
+                            </div>
+                        </label>
+                        <label class="goal-card">
+                            <input type="radio" name="goal" value="bulk">
+                            <div class="goal-content">
+                                <h3>💪 Ganhar Massa</h3>
+                                <p>Bulking</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group" id="deficitGroup" style="display: none;">
+                    <label for="deficit">Déficit/Superávit calórico desejado (kcal/dia)</label>
+                    <select id="deficit" name="deficit">
+                        <option value="150">Leve (150 kcal/dia)</option>
+                        <option value="250">Moderado (250 kcal/dia)</option>
+                        <option value="500" selected>Agressivo (500 kcal/dia)</option>
+                        <option value="custom">Personalizado</option>
+                    </select>
+                    <input type="number" id="deficitCustom" step="50" min="100" max="1000" style="display: none; margin-top: 10px;" placeholder="Digite o valor em kcal">
+                </div>
+            </section>
+
+            <!-- Macronutrientes -->
+            <section class="form-section">
+                <h2>Distribuição de Macronutrientes</h2>
+
+                <div class="form-group">
+                    <label>Método de cálculo</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="macroMethod" value="grams" checked>
+                            <span>Usar gramas por kg de peso</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="macroMethod" value="percentage">
+                            <span>Usar porcentagens</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="gramsMethod">
+                    <div class="form-group">
+                        <label for="protein">Proteína (g/kg)</label>
+                        <select id="protein" name="protein">
+                            <option value="1.6">1.6 g/kg</option>
+                            <option value="1.8" selected>1.8 g/kg</option>
+                            <option value="2.0">2.0 g/kg</option>
+                            <option value="custom">Personalizado</option>
+                        </select>
+                        <input type="number" id="proteinCustom" step="0.1" min="0.8" max="3" style="display: none; margin-top: 10px;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fat">Gordura (g/kg)</label>
+                        <select id="fat" name="fat">
+                            <option value="0.5">0.5 g/kg</option>
+                            <option value="1.0" selected>1.0 g/kg</option>
+                            <option value="1.5">1.5 g/kg</option>
+                            <option value="custom">Personalizado</option>
+                        </select>
+                        <input type="number" id="fatCustom" step="0.1" min="0.3" max="2" style="display: none; margin-top: 10px;">
+                    </div>
+
+                    <div class="info-box">
+                        <span>💡</span>
+                        <p>Os carboidratos serão calculados automaticamente com as calorias restantes.</p>
+                    </div>
+                </div>
+
+                <div id="percentageMethod" style="display: none;">
+                    <div class="form-group">
+                        <label for="proteinPercent">Proteína (%)</label>
+                        <input type="number" id="proteinPercent" name="proteinPercent" value="30" min="10" max="50">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fatPercent">Gordura (%)</label>
+                        <input type="number" id="fatPercent" name="fatPercent" value="25" min="15" max="40">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="carbPercent">Carboidrato (%)</label>
+                        <input type="number" id="carbPercent" name="carbPercent" value="45" min="20" max="60">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="meals">Dividir macros em quantas refeições?</label>
+                    <input type="number" id="meals" name="meals" value="4" min="1" max="10" required>
+                </div>
+            </section>
+
+            <button type="submit" class="btn-calculate">Calcular</button>
+        </form>
+
+        <!-- Resultados -->
+        <div id="results" style="display: none;">
+            <section class="results-section">
+                <h2>Seus Resultados</h2>
+
+                <div class="equation-info">
+                    <h3>📊 Cálculos Utilizados</h3>
+                    <div class="equation-box">
+                        <p><strong>Fórmula:</strong> Mifflin-St Jeor</p>
+                    </div>
+                    <div class="equation-box">
+                        <p><strong>TMB/BMR (Taxa Metabólica Basal):</strong></p>
+                        <p class="equation" id="bmrEquation"></p>
+                        <p class="equation-result" id="bmrResult"></p>
+                    </div>
+                    <div class="equation-box">
+                        <p><strong>GET/TDEE (Gasto Energético Total Diário):</strong></p>
+                        <p class="equation" id="tdeeEquation"></p>
+                        <p class="equation-result" id="tdeeResult"></p>
+                    </div>
+                    <div class="equation-box" id="adjustmentBox" style="display: none;">
+                        <p><strong>Ajuste para Objetivo:</strong></p>
+                        <p class="equation" id="adjustmentEquation"></p>
+                        <p class="equation-result" id="adjustmentResult"></p>
+                    </div>
+                </div>
+
+                <!-- Avisos -->
+                <div class="warnings-section" id="warningsContainer" style="display: none;">
+                    <h3>⚠️ Avisos Importantes</h3>
+                    <ul id="warningsList"></ul>
+                </div>
+
+                <!-- Composição Corporal -->
+                <div class="body-comp-section" id="bodyComposition" style="display: none;">
+                    <h3>📊 Composição Corporal</h3>
+                    <div class="comp-grid">
+                        <div class="comp-item">
+                            <span class="comp-label">Massa Magra:</span>
+                            <span class="comp-value" id="leanMassResult">0 kg</span>
+                        </div>
+                        <div class="comp-item">
+                            <span class="comp-label">Massa Gorda:</span>
+                            <span class="comp-value" id="fatMassResult">0 kg</span>
+                        </div>
+                        <div class="comp-item">
+                            <span class="comp-label">% Gordura:</span>
+                            <span class="comp-value" id="bodyFatResult">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-grid">
+                    <div class="result-card main">
+                        <h3>Calorias Diárias</h3>
+                        <div class="result-value" id="totalCalories">0</div>
+                        <p class="result-label">kcal/dia</p>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>Proteínas</h3>
+                        <div class="result-value" id="proteinResult">0g</div>
+                        <p class="result-label" id="proteinPercent">0%</p>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>Carboidratos</h3>
+                        <div class="result-value" id="carbResult">0g</div>
+                        <p class="result-label" id="carbPercent">0%</p>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>Gorduras</h3>
+                        <div class="result-value" id="fatResult">0g</div>
+                        <p class="result-label" id="fatPercent">0%</p>
+                    </div>
+                </div>
+
+                <div class="meals-section" id="mealsBreakdown">
+                    <h3>Por Refeição</h3>
+                    <div class="meals-grid" id="mealsGrid"></div>
+                </div>
+
+                <!-- Recomendações Adicionais -->
+                <div class="recommendations-section">
+                    <h3>💡 Recomendações Profissionais</h3>
+                    
+                    <div class="rec-grid">
+                        <div class="rec-card">
+                            <h4>💧 Hidratação</h4>
+                            <p class="rec-value" id="waterIntake">0 ml</p>
+                            <p class="rec-desc">por dia</p>
+                        </div>
+                        
+                        <div class="rec-card">
+                            <h4>🌾 Fibras</h4>
+                            <p class="rec-value" id="fiberIntake">0 g</p>
+                            <p class="rec-desc">por dia</p>
+                        </div>
+                    </div>
+                    
+                    <div class="rate-box">
+                        <h4>📈 Progressão Esperada</h4>
+                        <p id="rateRecommendation"></p>
+                    </div>
+                    
+                    <div class="tips-box">
+                        <h4>✅ Dicas Importantes</h4>
+                        <ul>
+                            <li>Ajuste as calorias a cada 2-3 semanas baseado nos resultados</li>
+                            <li>Priorize proteínas de alto valor biológico (carnes, ovos, whey)</li>
+                            <li>Distribua as refeições uniformemente ao longo do dia</li>
+                            <li>Mantenha consistência na dieta por pelo menos 2 semanas antes de avaliar</li>
+                            <li>Durma 7-9 horas por noite para otimizar recuperação e resultados</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="copyLink()" type="button" class="btn-copy">🔗 Copiar Link para Editar</button>
+                    <button onclick="exportResults()" type="button" class="btn-export">📥 Exportar Resultados</button>
+                </div>
+
+                <div class="info-box">
+                    <span>ℹ️</span>
+                    <p>Estes valores são estimativas baseadas nos dados fornecidos. Consulte um nutricionista para um plano personalizado e acompanhamento profissional.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
