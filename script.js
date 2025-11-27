@@ -281,11 +281,11 @@ function calculateMacros(e) {
     const fatPerKg = fatGrams / weight;
     
     if (goal === 'cut' && proteinPerKg < 1.8) {
-        warnings.push('⚠️ Em cutting, recomenda-se no mínimo 1.8g de proteína por kg para preservar massa muscular.');
+        warnings.push('⚠️ Em cutting, sugere-se no mínimo 1.8g de proteína por kg para preservar massa muscular. Consulte um nutricionista.');
     }
     
     if (fatPerKg < 0.5) {
-        warnings.push('⚠️ Gordura muito baixa pode afetar produção hormonal. Mínimo recomendado: 0.5g/kg.');
+        warnings.push('⚠️ Gordura muito baixa pode afetar produção hormonal. Mínimo sugerido: 0.5g/kg. Consulte um nutricionista.');
     }
     
     const deficitPercent = goal === 'cut' ? ((tdee - targetCalories) / tdee * 100) : 0;
@@ -410,14 +410,14 @@ function displayResults(calories, protein, carbs, fat, meals, equations) {
     document.getElementById('waterIntake').textContent = equations.waterIntake + ' ml';
     document.getElementById('fiberIntake').textContent = equations.fiberIntake + ' g';
     
-    // Taxa saudável de perda/ganho
+    // Taxa sugerida de perda/ganho
     let rateRecommendation = '';
     if (equations.goal === 'cut') {
-        rateRecommendation = 'Perda saudável: 0.5-1kg por semana (máximo 1% do peso corporal)';
+        rateRecommendation = 'Sugestão: 0.5-1kg por semana (máximo 1% do peso corporal). Consulte um nutricionista para ajustes personalizados.';
     } else if (equations.goal === 'bulk') {
-        rateRecommendation = 'Ganho saudável: 0.25-0.5kg por semana para minimizar acúmulo de gordura';
+        rateRecommendation = 'Sugestão: 0.25-0.5kg por semana para minimizar acúmulo de gordura. Consulte um nutricionista para ajustes personalizados.';
     } else {
-        rateRecommendation = 'Mantenha o peso estável, variando no máximo ±0.5kg';
+        rateRecommendation = 'Sugestão: Manter o peso estável, variando no máximo ±0.5kg. Consulte um nutricionista para acompanhamento.';
     }
     document.getElementById('rateRecommendation').textContent = rateRecommendation;
     
