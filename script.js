@@ -139,7 +139,8 @@ function calculateMacros(e) {
         proteinPercent: document.getElementById('proteinPercent').value,
         fatPercent: document.getElementById('fatPercent').value,
         carbPercent: document.getElementById('carbPercent').value,
-        meals: parseInt(document.getElementById('meals').value)
+        meals: parseInt(document.getElementById('meals').value),
+        bmrFormula: document.querySelector('input[name="bmrFormula"]:checked').value
     };
     
     // Salvar no localStorage
@@ -173,13 +174,27 @@ function calculateMacros(e) {
         bmr = 370 + (21.6 * leanMass);
         bmrFormula = `370 + (21.6 × ${leanMass.toFixed(1)} kg de massa magra)`;
     } else {
-        // Calcular TMB usando Mifflin-St Jeor
-        if (gender === 'male') {
-            bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
-            bmrFormula = `(10 × ${weight}) + (6.25 × ${height}) - (5 × ${age}) + 5`;
+        // Escolher fórmula TMB (Mifflin-St Jeor ou Harris-Benedict)
+        const formulaChoice = document.querySelector('input[name="bmrFormula"]:checked').value;
+        
+        if (formulaChoice === 'harris') {
+            // Harris-Benedict
+            if (gender === 'male') {
+                bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+                bmrFormula = `88.362 + (13.397 × ${weight}) + (4.799 × ${height}) - (5.677 × ${age})`;
+            } else {
+                bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+                bmrFormula = `447.593 + (9.247 × ${weight}) + (3.098 × ${height}) - (4.330 × ${age})`;
+            }
         } else {
-            bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
-            bmrFormula = `(10 × ${weight}) + (6.25 × ${height}) - (5 × ${age}) - 161`;
+            // Mifflin-St Jeor (padrão)
+            if (gender === 'male') {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+                bmrFormula = `(10 × ${weight}) + (6.25 × ${height}) - (5 × ${age}) + 5`;
+            } else {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+                bmrFormula = `(10 × ${weight}) + (6.25 × ${height}) - (5 × ${age}) - 161`;
+            }
         }
     }
 
@@ -421,6 +436,18 @@ function displayResults(calories, protein, carbs, fat, meals, equations) {
     }
     document.getElementById('rateRecommendation').textContent = rateRecommendation;
     
+    // Adicionar dica específica para bulking
+    const tipsList = document.getElementById('tipsList');
+    const bulkingTip = tipsList.querySelector('.bulking-warning');
+    if (bulkingTip) bulkingTip.remove();
+    
+    if (equations.goal === 'bulk') {
+        const li = document.createElement('li');
+        li.className = 'bulking-warning';
+        li.innerHTML = '<strong>Atenção:</strong> Tenha em mente que quanto maior a meta de ganho semanal, mais comida você precisará comer e maiores serão as chances de acumular gordura desnecessariamente.';
+        tipsList.appendChild(li);
+    }
+    
     // Exibir avisos
     const warningsContainer = document.getElementById('warningsContainer');
     if (equations.warnings.length > 0) {
@@ -533,6 +560,8 @@ function updateURL(data) {
         params.set('cp', data.carbPercent);
     }
     
+    params.set('bmrf', data.bmrFormula);
+    
     // Atualizar URL sem recarregar a página
     const newURL = window.location.pathname + '?' + params.toString();
     window.history.pushState({}, '', newURL);
@@ -576,7 +605,8 @@ function loadFromURL() {
         fatCustom: '',
         proteinPercent: params.get('pp') || '30',
         fatPercent: params.get('fp') || '25',
-        carbPercent: params.get('cp') || '45'
+        carbPercent: params.get('cp') || '45',
+        bmrFormula: params.get('bmrf') || 'mifflin'
     };
     
     fillForm(data);
@@ -640,6 +670,11 @@ function fillForm(data) {
     
     // Refeições
     document.getElementById('meals').value = data.meals;
+    
+    // Fórmula BMR
+    if (data.bmrFormula) {
+        document.querySelector(`input[name="bmrFormula"][value="${data.bmrFormula}"]`).checked = true;
+    }
 }
 
 // Copiar link
