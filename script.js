@@ -374,18 +374,18 @@ function displayResults(calories, protein, carbs, fat, meals, equations) {
     const fatCal = fat * 9;
     const totalCal = proteinCal + carbCal + fatCal;
 
-    const proteinPercent = Math.round((proteinCal / totalCal) * 100);
-    const carbPercent = Math.round((carbCal / totalCal) * 100);
-    const fatPercent = Math.round((fatCal / totalCal) * 100);
+    const proteinPercent = totalCal > 0 ? Math.round((proteinCal / totalCal) * 100) : 0;
+    const carbPercent = totalCal > 0 ? Math.round((carbCal / totalCal) * 100) : 0;
+    const fatPercent = totalCal > 0 ? Math.round((fatCal / totalCal) * 100) : 0;
 
     // Atualizar DOM
     document.getElementById('totalCalories').textContent = calories;
     document.getElementById('proteinResult').textContent = protein + 'g';
-    document.getElementById('proteinPercent').textContent = proteinPercent + '%';
+    document.getElementById('proteinPercentResult').textContent = proteinPercent + '%';
     document.getElementById('carbResult').textContent = carbs + 'g';
-    document.getElementById('carbPercent').textContent = carbPercent + '%';
+    document.getElementById('carbPercentResult').textContent = carbPercent + '%';
     document.getElementById('fatResult').textContent = fat + 'g';
-    document.getElementById('fatPercent').textContent = fatPercent + '%';
+    document.getElementById('fatPercentResult').textContent = fatPercent + '%';
 
     // Calcular por refeição
     const caloriesPerMeal = Math.round(calories / meals);
