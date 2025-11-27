@@ -471,7 +471,7 @@ function displayResults(calories, protein, carbs, fat, meals, equations) {
 }
 
 // Função para exportar resultados
-function exportResults() {
+function exportResults(event) {
     if (!window.lastCalculation) return;
     
     const data = window.lastCalculation;
@@ -511,35 +511,101 @@ Data: ${new Date().toLocaleDateString('pt-BR')}
 ===============================================
     `.trim();
     
-    // Copiar para clipboard
+    const btn = event ? event.target : null;
+    
+    // Copiar para clipboard primeiro
     navigator.clipboard.writeText(text).then(() => {
-        // Criar arquivo TXT para download
-        const blob = new Blob([text], { type: 'text/plain' });
+        // Depois fazer download
+        const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
         a.download = 'meus-macros-' + new Date().toISOString().split('T')[0] + '.txt';
+        document.body.appendChild(a);
         a.click();
-        URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        
+        // Pequeno delay antes de revogar URL
+        setTimeout(() => URL.revokeObjectURL(url), 100);
         
         // Feedback visual
+        if (btn) {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✅ Copiado e Exportado!';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+            }, 2000);
+        }
+    }).catch(err => {
+        console.error('Erro ao copiar:', err);
+        // Se clipboard falhar, apenas faz download
+        const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'meus-macros-' + new Date().toISOString().split('T')[0] + '.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 100);
+        
+        // Feedback
+        if (btn) {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✅ Arquivo Exportado!';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+            }, 2000);
+        }
+    });
+}
+
+// Função para compartilhar no WhatsApp
+function shareWhatsApp(event) {
+    if (!window.lastCalculation) return;
+    
+    const data = window.lastCalculation;
+    const text = `🏋️ *MEUS RESULTADOS - CIA DA SAÚDE* 🏋️
+
+📊 *CALORIAS E MACROS DIÁRIOS*
+• Calorias: *${data.calories} kcal*
+• Proteínas: *${data.protein}g*
+• Carboidratos: *${data.carbs}g*
+• Gorduras: *${data.fat}g*
+
+🍽️ *POR REFEIÇÃO* (${data.meals}x ao dia)
+• Calorias: ${Math.round(data.calories / data.meals)} kcal
+• Proteínas: ${Math.round(data.protein / data.meals)}g
+• Carboidratos: ${Math.round(data.carbs / data.meals)}g
+• Gorduras: ${Math.round(data.fat / data.meals)}g
+
+💧 *HIDRATAÇÃO*
+• ${data.equations.waterIntake} ml/dia
+
+🌾 *FIBRAS*
+• ${data.equations.fiberIntake}g/dia
+
+🔗 *Editar meus dados:*
+${window.location.href}
+
+_Calculado em ${new Date().toLocaleDateString('pt-BR')}_
+_Cia da Saúde Ilhota 🍃_`;
+
+    const encodedText = encodeURIComponent(text);
+    const whatsappURL = `https://api.whatsapp.com/send?text=${encodedText}`;
+    
+    // Abrir WhatsApp
+    window.open(whatsappURL, '_blank');
+    
+    // Feedback visual
+    if (event) {
         const btn = event.target;
         const originalText = btn.innerHTML;
-        btn.innerHTML = '✅ Copiado e Exportado!';
+        btn.innerHTML = '✅ Abrindo WhatsApp!';
         setTimeout(() => {
             btn.innerHTML = originalText;
         }, 2000);
-    }).catch(err => {
-        console.error('Erro ao copiar:', err);
-        // Se falhar clipboard, apenas faz download
-        const blob = new Blob([text], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'meus-macros-' + new Date().toISOString().split('T')[0] + '.txt';
-        a.click();
-        URL.revokeObjectURL(url);
-    });
+    }
 }
 
 // Atualizar URL com parâmetros

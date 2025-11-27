@@ -630,13 +630,13 @@ button[type="submit"]:hover {
     text-transform: uppercase;
 }
 
-.btn-export {
-    background: var(--verde-escuro);
+.btn-whatsapp {
+    background: #25D366;
     color: white;
 }
 
-.btn-export:hover {
-    background: var(--verde-medio);
+.btn-whatsapp:hover {
+    background: #20BA5A;
     transform: translateY(-2px);
 }
 
