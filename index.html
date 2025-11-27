@@ -9,6 +9,9 @@
 <body>
     <div class="container">
         <header>
+            <div class="logo-container">
+                <img src="./assets/images/logo.svg" alt="Cia da Saúde">
+            </div>
             <h1>Calculadora de Macros e Calorias</h1>
             <p class="subtitle">Calcule suas necessidades diárias de calorias e macronutrientes</p>
         </header>
@@ -128,7 +131,6 @@
                 <div class="form-group" id="cardioFreq" style="display: none;">
                     <label for="cardioDays">Quantos dias por semana?</label>
                     <select id="cardioDays" name="cardioDays">
-                        <option value="0">0 dias</option>
                         <option value="1">1 dia</option>
                         <option value="2">2 dias</option>
                         <option value="3" selected>3 dias</option>
@@ -146,7 +148,7 @@
 
                 <div class="form-group">
                     <label>Qual seu objetivo?</label>
-                    <div class="goal-options">
+                    <div class="goals-grid">
                         <label class="goal-card">
                             <input type="radio" name="goal" value="cut">
                             <div class="goal-content">
